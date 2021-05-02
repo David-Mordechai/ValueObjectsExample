@@ -38,8 +38,16 @@ namespace ValueObjectsExample.Domain.Tests
         {
             PostCodeIL postCodeIL_left = left;
             PostCodeIL postCodeIL_right = right;
-            //Assert.True(postCodeIL_left == postCodeIL_right);
-            Assert.True(postCodeIL_left.Equals(postCodeIL_right));
+            Assert.True(postCodeIL_left == postCodeIL_right);
+        }
+
+        [Theory]
+        [InlineData(1234566, 1234567)]
+        public void DifferentTwoPostCodes_NotEquel_ShouldBeTrue(int? left, int? right)
+        {
+            PostCodeIL postCodeIL_left = left;
+            PostCodeIL postCodeIL_right = right;
+            Assert.True(postCodeIL_left != postCodeIL_right);
         }
     }
 }
