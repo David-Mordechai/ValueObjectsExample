@@ -14,10 +14,7 @@ namespace ValueObjectsExample.Domain.ValueObjects
             return left is null || left.Equals(right);
         }
 
-        protected static bool NotEqualOperator(ValueObject left, ValueObject right)
-        {
-            return !EqualOperator(left, right);
-        }
+        protected static bool NotEqualOperator(ValueObject left, ValueObject right) => !EqualOperator(left, right);
 
         protected abstract IEnumerable<object> GetEqualityComponents();
 
@@ -37,6 +34,11 @@ namespace ValueObjectsExample.Domain.ValueObjects
                 .Select(x => x != null ? x.GetHashCode() : 0)
                 .Aggregate((x, y) => x ^ y);
         }
+
         // Other utility methods
+
+        public static bool operator ==(ValueObject left, ValueObject right) => EqualOperator(left, right);
+
+        public static bool operator !=(ValueObject left, ValueObject right) => NotEqualOperator(left, right);
     }
 }

@@ -78,7 +78,8 @@ namespace ValueObjectsExample.Domain.Tests
         public void SameTwoPostCodes_EquelEquel_ShouldBeTrue(int? left, int? right)
         {
             PostCodeIL postCodeIL_left = left;
-            Assert.True(postCodeIL_left == right);
+            PostCodeIL postCodeIL_right = right;
+            Assert.True(postCodeIL_left == postCodeIL_right);
         }
 
         [Theory]
