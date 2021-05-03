@@ -10,7 +10,48 @@ namespace ValueObjectsExample.Domain.Tests
         public void PostCodeILTypeShouldExceptIntValue()
         {
             PostCodeIL postCode = 1234567;
-            Assert.Equal(1234567, (int)postCode);
+            Assert.True(postCode == 1234567);
+            Assert.True(1234567.Equals(postCode));
+        }
+
+        [Fact]
+        public void ValidPostCodeILWhenEquelToNullShouldBeFalse()
+        {
+            PostCodeIL postCode = 1234567;
+            Assert.False(postCode.Equals(null));
+            Assert.False(postCode.Equals(null));
+        }
+
+        [Fact]
+        public void TwoEquelPostCodesHashcodesShouldBeEquel()
+        {
+            PostCodeIL postCode1 = 1234567;
+            PostCodeIL postCode2 = 1234567;
+            Assert.Equal(postCode1.GetHashCode(), postCode2.GetHashCode());
+        }
+
+        [Fact]
+        public void TwoEquelPostCodesEquelShoudReturnTrue()
+        {
+            PostCodeIL postCode1 = 1234567;
+            PostCodeIL postCode2 = 1234567;
+            Assert.True(postCode1.Equals(postCode2));
+        }
+
+        [Fact]
+        public void TwoNotEquelPostCodesEquelShoudReturnTrue()
+        {
+            PostCodeIL postCode1 = 1234567;
+            PostCodeIL postCode2 = 1234566;
+            Assert.False(postCode1.Equals(postCode2));
+        }
+
+        [Fact]
+        public void PostCodeWithValidValueWhenComparingToNullShouldReturnNotEquel()
+        {
+            PostCodeIL postCode1 = 1234567;
+            PostCodeIL postCode2 = null;
+            Assert.True(postCode1 != postCode2);
         }
 
         [Theory]
@@ -37,17 +78,15 @@ namespace ValueObjectsExample.Domain.Tests
         public void SameTwoPostCodes_EquelEquel_ShouldBeTrue(int? left, int? right)
         {
             PostCodeIL postCodeIL_left = left;
-            PostCodeIL postCodeIL_right = right;
-            Assert.True(postCodeIL_left == postCodeIL_right);
+            Assert.True(postCodeIL_left == right);
         }
 
         [Theory]
         [InlineData(1234566, 1234567)]
         public void DifferentTwoPostCodes_NotEquel_ShouldBeTrue(int? left, int? right)
         {
-            PostCodeIL postCodeIL_left = left;
             PostCodeIL postCodeIL_right = right;
-            Assert.True(postCodeIL_left != postCodeIL_right);
+            Assert.True(left != postCodeIL_right);
         }
     }
 }

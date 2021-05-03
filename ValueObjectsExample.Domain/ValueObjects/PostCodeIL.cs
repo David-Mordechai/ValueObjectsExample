@@ -23,17 +23,13 @@ namespace ValueObjectsExample.Domain.ValueObjects
         }
 
         public override bool Equals(object obj) => base.Equals(obj);
-        protected bool Equals(PostCodeIL other) => Code == other.Code;
 
         public static bool operator ==(PostCodeIL left, PostCodeIL right)
         {
-            if (left is null)
-                return right is null;
-
-            return left.Equals(right);
+            return EqualOperator(left, right);
         }
 
-        public static bool operator !=(PostCodeIL left, PostCodeIL right) => (left == right) is false;
+        public static bool operator !=(PostCodeIL left, PostCodeIL right) => NotEqualOperator(left, right);
 
         public override int GetHashCode() => base.GetHashCode();
 
