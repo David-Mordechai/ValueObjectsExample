@@ -19,7 +19,6 @@ namespace ValueObjectsExample.Domain.Tests
         {
             PostCodeIL postCode = 1234567;
             Assert.False(postCode.Equals(null));
-            Assert.False(postCode.Equals(null));
         }
 
         [Fact]
@@ -39,7 +38,7 @@ namespace ValueObjectsExample.Domain.Tests
         }
 
         [Fact]
-        public void TwoNotEquelPostCodesEquelShoudReturnTrue()
+        public void TwoNotEquelPostCodesEquelShoudReturnFalse()
         {
             PostCodeIL postCode1 = 1234567;
             PostCodeIL postCode2 = 1234566;
